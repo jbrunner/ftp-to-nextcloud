@@ -34,6 +34,7 @@ docker run -d \
 | `PASV_MIN_PORT` | No | `30000` | Minimum port for passive mode |
 | `PASV_MAX_PORT` | No | `30100` | Maximum port for passive mode |
 | `FTP_TLS` | No | `false` | Enable FTPS with auto-generated self-signed certificate |
+| `INSECURE_SKIP_VERIFY` | No | `false` | Skip TLS certificate verification for NextCloud connection |
 | `DEBUG` | No | `false` | Enable debug logging |
 
 ## FTP Client Configuration

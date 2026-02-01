@@ -20,9 +20,10 @@ import (
 )
 
 type NextCloudDriver struct {
-	nextcloudURL string
-	enableTLS    bool
-	debug        bool
+	nextcloudURL       string
+	enableTLS          bool
+	debug              bool
+	insecureSkipVerify bool
 }
 
 func (d *NextCloudDriver) GetSettings() (*ftpserver.Settings, error) {
@@ -86,8 +87,20 @@ func (d *NextCloudDriver) AuthUser(cc ftpserver.ClientContext, user, pass string
 	
 	client := gowebdav.NewClient(webdavURL, user, pass)
 
+	// Configure HTTP transport
+	var transport http.RoundTripper = http.DefaultTransport
+	
+	if d.insecureSkipVerify {
+		t := http.DefaultTransport.(*http.Transport).Clone()
+		t.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+		transport = t
+		log.Printf("[%s] Warning: TLS certificate verification disabled", remoteAddr)
+	}
+
 	if d.debug {
-		client.SetTransport(&debugTransport{Transport: http.DefaultTransport})
+		client.SetTransport(&debugTransport{Transport: transport})
+	} else {
+		client.SetTransport(transport)
 	}
 
 	return &NextCloudFS{

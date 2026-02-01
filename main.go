@@ -20,11 +20,13 @@ func main() {
 
 	enableTLS := os.Getenv("FTP_TLS")
 	debug := os.Getenv("DEBUG")
+	insecureSkipVerify := os.Getenv("INSECURE_SKIP_VERIFY")
 
 	driver := &NextCloudDriver{
-		nextcloudURL: nextcloudURL,
-		enableTLS:    enableTLS == "true" || enableTLS == "1",
-		debug:        debug == "true" || debug == "1",
+		nextcloudURL:       nextcloudURL,
+		enableTLS:          enableTLS == "true" || enableTLS == "1",
+		debug:              debug == "true" || debug == "1",
+		insecureSkipVerify: insecureSkipVerify == "true" || insecureSkipVerify == "1",
 	}
 
 	server := ftpserver.NewFtpServer(driver)
