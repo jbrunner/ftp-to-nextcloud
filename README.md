@@ -31,6 +31,8 @@ docker run -d \
 |----------|----------|---------|-------------|
 | `NEXTCLOUD_URL` | Yes | - | NextCloud base URL (from step 4 above, without share path) |
 | `FTP_PORT` | No | `2121` | FTP server port |
+| `PASV_MIN_PORT` | No | `30000` | Minimum port for passive mode |
+| `PASV_MAX_PORT` | No | `30100` | Maximum port for passive mode |
 | `FTP_TLS` | No | `false` | Enable FTPS with auto-generated self-signed certificate |
 | `DEBUG` | No | `false` | Enable debug logging |
 

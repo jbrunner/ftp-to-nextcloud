@@ -31,9 +31,27 @@ func (d *NextCloudDriver) GetSettings() (*ftpserver.Settings, error) {
 		port = "2121"
 	}
 
+	// Default passive port range
+	minPort := 30000
+	maxPort := 30100
+
+	// Override from environment variables if provided
+	if pasvMinPort := os.Getenv("PASV_MIN_PORT"); pasvMinPort != "" {
+		fmt.Sscanf(pasvMinPort, "%d", &minPort)
+	}
+	if pasvMaxPort := os.Getenv("PASV_MAX_PORT"); pasvMaxPort != "" {
+		fmt.Sscanf(pasvMaxPort, "%d", &maxPort)
+	}
+
+	log.Printf("Passive port range: %d-%d", minPort, maxPort)
+
 	settings := &ftpserver.Settings{
-		ListenAddr: "0.0.0.0:" + port,
-		PublicHost: "",
+		ListenAddr:              "0.0.0.0:" + port,
+		ActiveTransferPortNon20: true,
+		PassiveTransferPortRange: &ftpserver.PortRange{
+			Start: minPort,
+			End:   maxPort,
+		},
 	}
 
 	if d.enableTLS {

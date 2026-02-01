@@ -13,11 +13,13 @@ FROM scratch
 COPY --from=builder /build/ftp-to-nextcloud /ftp-to-nextcloud
 
 ENV FTP_PORT=2121 \
+    PASV_MIN_PORT=30000 \
+    PASV_MAX_PORT=30100 \
     FTP_TLS=false \
     DEBUG=false
 
 USER 65534:65534
 
-EXPOSE 2121
+EXPOSE 2121 30000-30100
 
 ENTRYPOINT ["/ftp-to-nextcloud"]
