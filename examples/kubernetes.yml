@@ -3,6 +3,8 @@
 # The Service exposes all FTP ports (control port 2121 and passive ports 30000-30009).
 # The LoadBalancer must support forwarding these ports to the pod.
 # 
+# Set PUBLIC_HOST to the LoadBalancer's external IP address for passive mode to work.
+#
 # For more concurrent transfers, add more port entries in both Service and Deployment.
 # Adjust PASV_MIN_PORT/PASV_MAX_PORT environment variables to match the exposed ports.
 ---
@@ -99,6 +101,8 @@ spec:
           env:
             - name: NEXTCLOUD_URL
               value: "https://nextcloud.example.com"
+            - name: PUBLIC_HOST
+              value: "REPLACE_WITH_LOADBALANCER_IP"
             - name: PASV_MIN_PORT
               value: "30000"
             - name: PASV_MAX_PORT

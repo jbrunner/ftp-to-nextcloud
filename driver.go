@@ -46,8 +46,14 @@ func (d *NextCloudDriver) GetSettings() (*ftpserver.Settings, error) {
 
 	log.Printf("Passive port range: %d-%d", minPort, maxPort)
 
+	publicHost := os.Getenv("PUBLIC_HOST")
+	if publicHost != "" {
+		log.Printf("Public host: %s", publicHost)
+	}
+
 	settings := &ftpserver.Settings{
 		ListenAddr:              "0.0.0.0:" + port,
+		PublicHost:              publicHost,
 		ActiveTransferPortNon20: true,
 		PassiveTransferPortRange: &ftpserver.PortRange{
 			Start: minPort,
