@@ -1,7 +1,7 @@
 # FTP to NextCloud - Kubernetes Deployment
 #
-# This example uses hostPort to expose passive FTP ports 30000-30009.
-# The Service and Deployment both expose these 10 ports plus the control port 2121.
+# The Service exposes all FTP ports (control port 2121 and passive ports 30000-30009).
+# The LoadBalancer must support forwarding these ports to the pod.
 # 
 # For more concurrent transfers, add more port entries in both Service and Deployment.
 # Adjust PASV_MIN_PORT/PASV_MAX_PORT environment variables to match the exposed ports.
@@ -15,37 +15,48 @@ spec:
   selector:
     app: ftp-to-nextcloud
   ports:
-    - protocol: TCP
+    - name: ftp
+      protocol: TCP
       port: 2121
       targetPort: 2121
-    - protocol: TCP
+    - name: pasv-30000
+      protocol: TCP
       port: 30000
       targetPort: 30000
-    - protocol: TCP
+    - name: pasv-30001
+      protocol: TCP
       port: 30001
       targetPort: 30001
-    - protocol: TCP
+    - name: pasv-30002
+      protocol: TCP
       port: 30002
       targetPort: 30002
-    - protocol: TCP
+    - name: pasv-30003
+      protocol: TCP
       port: 30003
       targetPort: 30003
-    - protocol: TCP
+    - name: pasv-30004
+      protocol: TCP
       port: 30004
       targetPort: 30004
-    - protocol: TCP
+    - name: pasv-30005
+      protocol: TCP
       port: 30005
       targetPort: 30005
-    - protocol: TCP
+    - name: pasv-30006
+      protocol: TCP
       port: 30006
       targetPort: 30006
-    - protocol: TCP
+    - name: pasv-30007
+      protocol: TCP
       port: 30007
       targetPort: 30007
-    - protocol: TCP
+    - name: pasv-30008
+      protocol: TCP
       port: 30008
       targetPort: 30008
-    - protocol: TCP
+    - name: pasv-30009
+      protocol: TCP
       port: 30009
       targetPort: 30009
 ---
@@ -68,37 +79,16 @@ spec:
           image: ghcr.io/jbrunner/ftp-to-nextcloud:latest
           ports:
             - containerPort: 2121
-            # Passive mode ports with hostPort
             - containerPort: 30000
-              hostPort: 30000
-              protocol: TCP
             - containerPort: 30001
-              hostPort: 30001
-              protocol: TCP
             - containerPort: 30002
-              hostPort: 30002
-              protocol: TCP
             - containerPort: 30003
-              hostPort: 30003
-              protocol: TCP
             - containerPort: 30004
-              hostPort: 30004
-              protocol: TCP
             - containerPort: 30005
-              hostPort: 30005
-              protocol: TCP
             - containerPort: 30006
-              hostPort: 30006
-              protocol: TCP
             - containerPort: 30007
-              hostPort: 30007
-              protocol: TCP
             - containerPort: 30008
-              hostPort: 30008
-              protocol: TCP
             - containerPort: 30009
-              hostPort: 30009
-              protocol: TCP
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
