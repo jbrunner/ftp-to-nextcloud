@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  ftp-to-nextcloud:
+    image: ghcr.io/jbrunner/ftp-to-nextcloud:latest
+    restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    user: "1000:1000"
+    environment:
+      - NEXTCLOUD_URL=https://nextcloud.example.com
+    ports:
+      - "2121:2121"
+      - "30000-30100:30000-30100"
+
