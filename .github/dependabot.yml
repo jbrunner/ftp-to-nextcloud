@@ -1,43 +1,50 @@
 version: 2
 updates:
   # Go modules
-  - package-ecosystem: "gomod"
-    directory: "/"
+  - package-ecosystem: gomod
+    directory: /
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: weekly
+      day: monday
+    assignees:
+      - jbrunner
     labels:
-      - "dependencies"
-      - "go"
+      - dependencies
+      - go
     commit-message:
-      prefix: "chore(deps)"
-      include: "scope"
+      prefix: chore(deps)
+      include: scope
     open-pull-requests-limit: 5
 
   # Dockerfile
-  - package-ecosystem: "docker"
-    directory: "/"
+  - package-ecosystem: docker
+    directory: /
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: weekly
+      day: monday
+    assignees:
+      - jbrunner
     labels:
-      - "dependencies"
-      - "docker"
+      - dependencies
+      - docker
     commit-message:
-      prefix: "chore(deps)"
-      include: "scope"
+      prefix: chore(deps)
+      include: scope
     open-pull-requests-limit: 3
 
   # GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: weekly
+      day: monday
+    assignees:
+      - jbrunner
     labels:
-      - "dependencies"
-      - "github-actions"
+      - dependencies
+      - github-actions
     commit-message:
-      prefix: "chore(deps)"
-      include: "scope"
+      prefix: chore(deps)
+      include: scope
     open-pull-requests-limit: 3
+
