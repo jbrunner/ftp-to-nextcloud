@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/fclairamb/ftpserverlib v0.32.1
 	github.com/spf13/afero v1.15.0
-	github.com/studio-b12/gowebdav v0.12.0
+	github.com/studio-b12/gowebdav v0.13.0
 )
 
 require (
