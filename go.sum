@@ -1,5 +1,5 @@
-github.com/fclairamb/ftpserverlib v0.32.6 h1:C+Y9lDANWQllbmFny1Pvn0d85V0ys8TIGzeb+CaZMK8=
-github.com/fclairamb/ftpserverlib v0.32.6/go.mod h1:KuQisjRN43wF2efPcxz07RseZyOz93hp+aPG2tx8ICQ=
+github.com/fclairamb/ftpserverlib v0.33.0 h1:ZlyazIdDhKDsPzOuWId7uXh5w7HpuXrfFK/UhD9ZcUU=
+github.com/fclairamb/ftpserverlib v0.33.0/go.mod h1:KuQisjRN43wF2efPcxz07RseZyOz93hp+aPG2tx8ICQ=
 github.com/secsy/goftp v0.0.0-20200609142545-aa2de14babf4 h1:PT+ElG/UUFMfqy5HrxJxNzj3QBOf7dZwupeVC+mG1Lo=
 github.com/secsy/goftp v0.0.0-20200609142545-aa2de14babf4/go.mod h1:MnkX001NG75g3p8bhFycnyIjeQoOjGL6CEIsdE/nKSY=
 github.com/spf13/afero v1.15.0 h1:b/YBCLWAJdFWJTN9cLhiXXcD7mzKn9Dm86dNnfyQw1I=
